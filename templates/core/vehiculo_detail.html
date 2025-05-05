@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ vehiculo.marca }} {{ vehiculo.modelo }} - SDF Automóviles{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <div class="card mb-4">
+            <div id="carouselVehiculo{{ vehiculo.id }}" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{{ vehiculo.imagen_destacada.url }}" class="d-block w-100" alt="Imagen principal">
+                    </div>
+                    {% for img in vehiculo.imagenes.all %}
+                    <div class="carousel-item">
+                        <img src="{{ img.imagen.url }}" class="d-block w-100" alt="Imagen adicional">
+                    </div>
+                    {% endfor %}
+                </div>
+                {% if vehiculo.imagenes.all %}
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselVehiculo{{ vehiculo.id }}" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselVehiculo{{ vehiculo.id }}" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                </button>
+                {% endif %}
+            </div>
+            <div class="card-body">
+                <h1 class="card-title">{{ vehiculo.marca }} {{ vehiculo.modelo }}</h1>
+                <p class="card-text">
+                    <strong>Año:</strong> {{ vehiculo.año }}<br>
+                    <strong>Estado:</strong> {{ vehiculo.get_estado_display }}<br>
+                    <strong>Precio:</strong> ${{ vehiculo.precio|floatformat:2 }}
+                </p>
+                <hr>
+                <h4>Descripción</h4>
+                <p class="card-text">{{ vehiculo.descripcion|linebreaks }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h4>¿Te interesa este vehículo?</h4>
+                <p>Contactanos por WhatsApp para más información:</p>
+                <a href="https://wa.me/5491112345678?text=Hola, me interesa el {{ vehiculo.marca }} {{ vehiculo.modelo }} {{ vehiculo.año }}" 
+                   class="btn btn-success btn-lg w-100" target="_blank">
+                    <i class="bi bi-whatsapp"></i> Consultar por WhatsApp
+                </a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h4>Características Técnicas</h4>
+                <ul class="list-unstyled">
+                    <li><i class="bi bi-check-circle-fill text-success"></i> Año: {{ vehiculo.año }}</li>
+                    <li><i class="bi bi-check-circle-fill text-success"></i> Estado: {{ vehiculo.get_estado_display }}</li>
+                    <li><i class="bi bi-check-circle-fill text-success"></i> Precio: ${{ vehiculo.precio|floatformat:2 }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

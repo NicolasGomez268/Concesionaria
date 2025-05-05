@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}SDF Automóviles - Inicio{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="text-center mb-4">Nuestros Vehículos</h1>
+        
+        <!-- Filtros -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <form method="get" class="row g-3">
+                    <div class="col-md-3">
+                        <label for="marca" class="form-label">Marca</label>
+                        <input type="text" class="form-control" id="marca" name="marca">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="modelo" class="form-label">Modelo</label>
+                        <input type="text" class="form-control" id="modelo" name="modelo">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="precio_min" class="form-label">Precio Mínimo</label>
+                        <input type="number" class="form-control" id="precio_min" name="precio_min">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="precio_max" class="form-label">Precio Máximo</label>
+                        <input type="number" class="form-control" id="precio_max" name="precio_max">
+                    </div>
+                    <div class="col-12 text-center">
+                        <button type="submit" class="btn btn-primary">Filtrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Listado de vehículos -->
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for vehiculo in vehiculos %}
+            <div class="col">
+                <div class="card h-100">
+                    <img src="{{ vehiculo.imagen_destacada.url }}" class="card-img-top" alt="{{ vehiculo.marca }} {{ vehiculo.modelo }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ vehiculo.marca }} {{ vehiculo.modelo }}</h5>
+                        <p class="card-text">
+                            <strong>Año:</strong> {{ vehiculo.año }}<br>
+                            <strong>Estado:</strong> {{ vehiculo.get_estado_display }}<br>
+                            <strong>Precio:</strong> ${{ vehiculo.precio|floatformat:2 }}
+                        </p>
+                        <div class="d-grid gap-2">
+                            <a href="{% url 'vehiculo_detail' vehiculo.pk %}" class="btn btn-primary">Ver Detalles</a>
+                            <a href="https://wa.me/5491112345678?text=Hola, me interesa el {{ vehiculo.marca }} {{ vehiculo.modelo }} {{ vehiculo.año }}" 
+                               class="btn btn-success" target="_blank">
+                                <i class="bi bi-whatsapp"></i> Consultar por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="alert alert-info">
+                    No hay vehículos disponibles en este momento.
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %} 

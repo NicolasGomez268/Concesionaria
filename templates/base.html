@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SDF Automóviles{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #e60000;
+            --dark-color: #000000;
+            --light-color: #ffffff;
+            --gray-color: #1a1a1a;
+        }
+        
+        body {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background-color: var(--dark-color) !important;
+            border-bottom: 2px solid var(--primary-color);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            color: var(--primary-color) !important;
+            font-weight: bold;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-link {
+            color: var(--light-color) !important;
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 0.5rem 1.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #cc0000;
+            border-color: #cc0000;
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background-color: #25D366;
+            border-color: #25D366;
+            transition: all 0.3s ease;
+        }
+
+        .btn-success:hover {
+            background-color: #128C7E;
+            border-color: #128C7E;
+            transform: translateY(-2px);
+        }
+
+        .card {
+            background-color: var(--gray-color);
+            border: 1px solid var(--primary-color);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(230, 0, 0, 0.3);
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .footer {
+            background-color: var(--dark-color);
+            border-top: 2px solid var(--primary-color);
+            padding: 3rem 0;
+            margin-top: auto;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color) !important;
+            transform: translateY(-3px);
+        }
+
+        .alert {
+            border-radius: 0;
+            border: none;
+        }
+
+        .table {
+            color: var(--light-color);
+        }
+
+        .table-dark {
+            background-color: var(--gray-color);
+        }
+
+        .form-control, .form-select {
+            background-color: var(--gray-color);
+            border: 1px solid #333;
+            color: var(--light-color);
+        }
+
+        .form-control:focus, .form-select:focus {
+            background-color: var(--gray-color);
+            border-color: var(--primary-color);
+            color: var(--light-color);
+            box-shadow: 0 0 0 0.25rem rgba(230, 0, 0, 0.25);
+        }
+
+        .form-label {
+            color: var(--light-color);
+            font-weight: 500;
+        }
+
+        .badge {
+            padding: 0.5em 1em;
+        }
+
+        .btn-group .btn {
+            padding: 0.25rem 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+            
+            .card-img-top {
+                height: 150px;
+            }
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <i class="bi bi-car-front-fill"></i> SDF Automóviles
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">
+                            <i class="bi bi-house"></i> Inicio
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">
+                            <i class="bi bi-info-circle"></i> Sobre Nosotros
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact' %}">
+                            <i class="bi bi-envelope"></i> Contacto
+                        </a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'admin_dashboard' %}">
+                            <i class="bi bi-speedometer2"></i> Panel Admin
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="nav-link btn btn-link p-0" style="color:inherit; text-decoration:none;">
+                                <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+                            </button>
+                        </form>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">
+                            <i class="bi bi-box-arrow-in-right"></i> Ingresar
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-4">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5 class="mb-3">SDF Automóviles</h5>
+                    <p>Tu concesionaria de confianza en Berazategui</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="mb-3">Contacto</h5>
+                    <p>
+                        <i class="bi bi-geo-alt-fill"></i> Av. Dardo Rocha 542<br>
+                        Berazategui, Buenos Aires<br><br>
+                        <i class="bi bi-telephone-fill"></i> (011) 1234-5678<br>
+                        <i class="bi bi-whatsapp"></i> +54 9 11 1234-5678
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="mb-3">Síguenos</h5>
+                    <div class="social-links">
+                        <a href="#" class="text-light me-3"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-light me-3"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-4 mb-3" style="border-color: var(--primary-color);">
+            <div class="text-center">
+                <small>&copy; {% now "Y" %} SDF Automóviles. Todos los derechos reservados.</small>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html> 
