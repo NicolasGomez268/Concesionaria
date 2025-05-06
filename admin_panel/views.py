@@ -23,7 +23,7 @@ def vehiculo_create(request):
             imagenes = request.FILES.getlist('imagenes')
             
             # Procesar imágenes adicionales
-            for idx, imagen in enumerate(imagenes[:7]):
+            for idx, imagen in enumerate(imagenes[:5]):
                 try:
                     ImagenVehiculo.objects.create(
                         vehiculo=vehiculo,
@@ -56,7 +56,7 @@ def vehiculo_edit(request, pk):
                 vehiculo.imagenes.all().delete()
                 
                 # Procesar nuevas imágenes
-                for idx, imagen in enumerate(imagenes[:7]):
+                for idx, imagen in enumerate(imagenes[:5]):
                     try:
                         ImagenVehiculo.objects.create(
                             vehiculo=vehiculo,

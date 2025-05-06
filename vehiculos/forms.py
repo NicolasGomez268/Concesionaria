@@ -29,6 +29,6 @@ class VehiculoForm(forms.ModelForm):
 
     def clean_imagenes(self):
         imagenes = self.files.getlist('imagenes')
-        if len(imagenes) > 7:
-            raise forms.ValidationError('Solo se permiten hasta 7 imágenes adicionales.')
+        if len(imagenes) > 5:
+            raise forms.ValidationError('Solo se permiten hasta 5 imágenes adicionales.')
         return imagenes 
