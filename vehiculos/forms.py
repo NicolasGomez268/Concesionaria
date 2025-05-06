@@ -1,5 +1,6 @@
 from django import forms
 from .models import Vehiculo
+from django.forms.widgets import ClearableFileInput
 
 class VehiculoForm(forms.ModelForm):
     class Meta:

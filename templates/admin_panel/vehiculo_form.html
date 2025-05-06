@@ -95,12 +95,9 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="{{ form.imagenes.id_for_label }}" class="form-label">{{ form.imagenes.label }}</label>
-                        {{ form.imagenes }}
-                        {% if form.imagenes.help_text %}
-                            <div class="form-text">{{ form.imagenes.help_text }}</div>
-                        {% endif %}
-                        
+                        <label for="id_imagenes" class="form-label">Imágenes adicionales</label>
+                        <input type="file" name="imagenes" id="id_imagenes" multiple class="form-control" accept="image/*">
+                        <div class="form-text">Podés seleccionar hasta 7 imágenes adicionales.</div>
                         <div class="preview-container" id="previewContainer">
                             {% if form.instance.pk %}
                                 {% for imagen in form.instance.imagenes.all %}
