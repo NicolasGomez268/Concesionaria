@@ -27,6 +27,11 @@ class VehiculoForm(forms.ModelForm):
             'activo': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.required = False
+
     def clean_imagenes(self):
         imagenes = self.files.getlist('imagenes')
         if len(imagenes) > 5:

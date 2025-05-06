@@ -8,13 +8,13 @@ class Vehiculo(models.Model):
         ('usado', 'Usado'),
     ]
 
-    marca = models.CharField(max_length=100)
-    modelo = models.CharField(max_length=100)
-    año = models.IntegerField()
-    precio = models.DecimalField(max_digits=12, decimal_places=2)
-    estado = models.CharField(max_length=10, choices=ESTADO_CHOICES)
-    imagen_destacada = models.ImageField(upload_to='vehiculos/')
-    descripcion = models.TextField()
+    marca = models.CharField(max_length=100, blank=True, null=True)
+    modelo = models.CharField(max_length=100, blank=True, null=True)
+    año = models.IntegerField(blank=True, null=True)
+    precio = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
+    estado = models.CharField(max_length=10, choices=ESTADO_CHOICES, blank=True, null=True)
+    imagen_destacada = models.ImageField(upload_to='vehiculos/', blank=True, null=True)
+    descripcion = models.TextField(blank=True, null=True)
     activo = models.BooleanField(default=True)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_actualizacion = models.DateTimeField(auto_now=True)
