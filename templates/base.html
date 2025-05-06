@@ -156,6 +156,65 @@
                 height: 150px;
             }
         }
+
+        .portada-marco-red {
+            position: relative;
+            background: #000;
+            border-radius: 32px;
+            padding: 3rem 2rem 2.5rem 2rem;
+            box-shadow: 0 0 0 8px rgba(230,0,0,0.10), 0 0 32px 8px rgba(230,0,0,0.18);
+            /* Glow effect, no solid border */
+            overflow: hidden;
+        }
+        .portada-marco-red::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 32px;
+            pointer-events: none;
+            background: radial-gradient(circle at 50% 50%, rgba(230,0,0,0.18) 0%, rgba(230,0,0,0.10) 60%, transparent 100%);
+            z-index: 0;
+        }
+        .portada-hero > * {
+            position: relative;
+            z-index: 1;
+        }
+        .portada-img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (max-width: 992px) {
+            .portada-marco-red {
+                padding: 2rem 0.5rem 1.5rem 0.5rem;
+            }
+            .portada-img {
+                max-height: 220px !important;
+                width: 100% !important;
+            }
+        }
+
+        .vehiculo-card.marco-red-glow {
+            position: relative;
+            box-shadow: 0 0 0 4px rgba(230,0,0,0.10), 0 0 16px 4px rgba(230,0,0,0.18);
+            border-radius: 18px;
+            overflow: hidden;
+        }
+        .vehiculo-card.marco-red-glow::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 18px;
+            pointer-events: none;
+            background: radial-gradient(circle at 50% 50%, rgba(230,0,0,0.14) 0%, rgba(230,0,0,0.08) 60%, transparent 100%);
+            z-index: 0;
+        }
+        .vehiculo-card.marco-red-glow > * {
+            position: relative;
+            z-index: 1;
+        }
     </style>
     {% block extra_css %}
         <link rel="stylesheet" href="/static/estilos_vehiculos.css">
@@ -224,22 +283,25 @@
     {% if 'admin-panel' not in request.path %}
     <footer class="footer">
         <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5 class="mb-3">SDF Automóviles</h5>
-                    <p>Tu concesionaria de confianza en Berazategui</p>
-                </div>
-                <div class="col-md-4">
+            <div class="row align-items-center">
+                <!-- Contacto -->
+                <div class="col-md-4 mb-4 mb-md-0">
                     <h5 class="mb-3">Contacto</h5>
-                    <p>
-                        <i class="bi bi-geo-alt-fill"></i> Av. Dardo Rocha 542<br>
-                        Berazategui, Buenos Aires<br><br>
-                        <i class="bi bi-telephone-fill"></i> (011) 1234-5678<br>
-                        <i class="bi bi-whatsapp"></i> {{ WHATSAPP_DISPLAY }}
-                    </p>
+                    <p class="mb-1"><i class="bi bi-telephone-fill"></i> (011) 1234-5678</p>
+                    <p class="mb-1"><i class="bi bi-whatsapp"></i> {{ WHATSAPP_DISPLAY }}</p>
+                    <p class="mb-1"><i class="bi bi-envelope"></i> info@sdfautomoviles.com</p>
                 </div>
-                <div class="col-md-4">
-                    <h5 class="mb-3">Síguenos</h5>
+                <!-- Ubicación -->
+                <div class="col-md-4 text-center mb-4 mb-md-0">
+                    <h5 class="mb-3">Ubicación</h5>
+                    <p class="mb-2"><i class="bi bi-geo-alt-fill"></i> Av. Dardo Rocha 542<br>Berazategui, Buenos Aires</p>
+                    <div class="d-flex justify-content-center">
+                        <iframe src="https://www.google.com/maps?q=Av.+Dardo+Rocha+542,+Berazategui,+Buenos+Aires&output=embed" width="90%" height="90" style="border:0; border-radius:10px; min-width:120px;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+                <!-- Redes Sociales -->
+                <div class="col-md-4 text-md-end text-center">
+                    <h5 class="mb-3">Redes</h5>
                     <div class="social-links">
                         <a href="#" class="text-light me-3"><i class="bi bi-instagram"></i></a>
                         <a href="#" class="text-light me-3"><i class="bi bi-facebook"></i></a>

@@ -6,7 +6,7 @@ class VehiculoForm(forms.ModelForm):
         model = Vehiculo
         fields = [
             'marca', 'modelo', 'año', 'precio', 'estado', 'kilometraje', 
-            'transmision', 'combustible', 'color', 'descripcion', 
+            'combustible', 'color', 'descripcion', 
             'imagen_destacada', 'activo'
         ]
         widgets = {
@@ -16,7 +16,6 @@ class VehiculoForm(forms.ModelForm):
             'precio': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01'}),
             'estado': forms.Select(attrs={'class': 'form-select'}),
             'kilometraje': forms.NumberInput(attrs={'class': 'form-control'}),
-            'transmision': forms.TextInput(attrs={'class': 'form-control'}),
             'combustible': forms.TextInput(attrs={'class': 'form-control'}),
             'color': forms.TextInput(attrs={'class': 'form-control'}),
             'descripcion': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
