@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Todos los Vehículos - SDF Automóviles{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h2 class="text-center mb-4 text-white">Todos los Vehículos</h2>
+    <div class="row g-4 justify-content-center">
+        {% for vehiculo in vehiculos %}
+        <div class="col-md-4 col-lg-3">
+            <div class="card vehiculo-card h-100">
+                <img src="{{ vehiculo.imagen_destacada.url }}" class="card-img-top vehiculo-img" alt="Imagen de {{ vehiculo.marca }} {{ vehiculo.modelo }}">
+                <div class="card-body">
+                    <h5 class="card-title text-white">{{ vehiculo.marca }} {{ vehiculo.modelo }}</h5>
+                    <p class="card-text text-secondary mb-1">Año: {{ vehiculo.año }}</p>
+                    <p class="card-text text-secondary mb-1">Estado: {{ vehiculo.get_estado_display }}</p>
+                    <p class="card-text text-danger fw-bold mb-2">Precio: ${{ vehiculo.precio|floatformat:2 }}</p>
+                    <a href="{% url 'vehiculo_detail' vehiculo.pk %}" class="btn btn-outline-danger w-100 mb-2">Ver Detalles</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center text-secondary">
+            <p>No hay vehículos disponibles.</p>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="text-center mt-4">
+        <a href="{% url 'home' %}" class="btn btn-secondary btn-lg px-5">Volver al Inicio</a>
+    </div>
+</div>
+{% endblock %} 

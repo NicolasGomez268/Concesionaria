@@ -67,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'core.context_processors.whatsapp_number',
             ],
         },
     },
@@ -134,3 +135,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = '/admin/login/'
 LOGIN_REDIRECT_URL = '/'
+
+WHATSAPP_NUMBER = '543731662839'
+WHATSAPP_DISPLAY = '+54 3731 66-2839'

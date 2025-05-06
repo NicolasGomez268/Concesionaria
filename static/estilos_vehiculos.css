@@ -1,0 +1,318 @@
+body {
+    background: #111 !important;
+    color: #fff;
+}
+
+/* NAVBAR */
+.navbar {
+    background-color: #000 !important;
+    border-bottom: 2px solid #e60000;
+}
+.navbar-brand {
+    color: #e60000 !important;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.nav-link {
+    color: #fff !important;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+.nav-link:hover {
+    color: #e60000 !important;
+    transform: translateY(-2px);
+}
+
+/* FORMULARIOS */
+.form-control, .form-select {
+    background: #222 !important;
+    color: #fff !important;
+    border: 1px solid #444 !important;
+}
+.form-control:focus, .form-select:focus {
+    background: #222 !important;
+    border-color: #e60000 !important;
+    color: #fff !important;
+    box-shadow: 0 0 0 0.2rem rgba(230,0,0,0.15) !important;
+}
+.form-label {
+    color: #fff !important;
+    font-weight: 500;
+}
+
+/* BOTONES */
+.btn, .btn-primary, .btn-danger, .btn-outline-danger {
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+}
+.btn-primary, .btn-danger {
+    background: #e60000 !important;
+    border-color: #e60000 !important;
+    color: #fff !important;
+}
+.btn-primary:hover, .btn-danger:hover {
+    background: #ff0000 !important;
+    border-color: #ff0000 !important;
+    color: #fff !important;
+}
+.btn-outline-danger {
+    color: #e60000 !important;
+    border-color: #e60000 !important;
+    background: transparent !important;
+}
+.btn-outline-danger:hover {
+    background: #e60000 !important;
+    color: #fff !important;
+}
+.btn-success {
+    background: #25D366 !important;
+    border-color: #25D366 !important;
+    color: #fff !important;
+}
+.btn-success:hover {
+    background: #128C7E !important;
+    border-color: #128C7E !important;
+}
+
+/* TARJETAS */
+.card, .vehiculo-card {
+    background: #222 !important;
+    border: 1px solid #b30000 !important;
+    border-radius: 18px !important;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.7);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.card:hover, .vehiculo-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 8px 32px rgba(179,0,0,0.3);
+    border-color: #ff0000 !important;
+}
+.card-title, .card-header {
+    color: #fff !important;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.card-text {
+    color: #bbb !important;
+}
+.card-img-top, .vehiculo-img {
+    border-top-left-radius: 18px !important;
+    border-top-right-radius: 18px !important;
+    object-fit: cover;
+    height: 180px;
+}
+
+/* TABLAS */
+.table, .table-dark {
+    background: #181818 !important;
+    color: #fff !important;
+    border-color: #b30000 !important;
+}
+.table th, .table td {
+    border-color: #b30000 !important;
+}
+.table thead th {
+    background: #222 !important;
+    color: #e60000 !important;
+}
+
+/* FILTROS Y FORMULARIOS ESPECIALES */
+.filtro-form {
+    background: #181818;
+    border: 1px solid #b30000;
+    border-radius: 14px;
+    padding: 18px 0;
+}
+.filtro-input {
+    background: #222;
+    color: #fff;
+    border: 1px solid #444;
+}
+.filtro-input::placeholder {
+    color: #bbb;
+}
+.filtro-btn {
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: background 0.2s, color 0.2s;
+}
+.filtro-btn:hover {
+    background: #ff0000;
+    color: #fff;
+}
+
+/* FOOTER */
+.footer {
+    background: #000 !important;
+    border-top: 2px solid #e60000 !important;
+    color: #fff !important;
+}
+.social-links a {
+    color: #fff !important;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+}
+.social-links a:hover {
+    color: #e60000 !important;
+    transform: translateY(-3px);
+}
+
+/* ALERTAS */
+.alert {
+    background: #222 !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 8px !important;
+}
+
+/* BADGES Y OTROS */
+.badge {
+    background: #e60000 !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+    .card-img-top, .vehiculo-img {
+        height: 120px;
+    }
+    .btn-success.btn-lg.w-100 {
+        font-size: 1.1rem;
+        padding: 0.9rem 0.5rem;
+        border-radius: 12px;
+        margin-bottom: 1.2rem;
+        white-space: normal;
+    }
+    .card-body h4, .card-body ul, .card-body li {
+        font-size: 1.08rem !important;
+    }
+    .card-body ul.list-unstyled {
+        margin-bottom: 0.5rem;
+    }
+    .card-body ul.list-unstyled li {
+        color: #fff !important;
+        margin-bottom: 0.6rem;
+        font-weight: 500;
+        text-shadow: 0 1px 2px #000;
+    }
+    .card-body h4 {
+        color: #fff !important;
+        margin-bottom: 0.7rem;
+        font-size: 1.15rem !important;
+    }
+}
+
+/* Mejorar contraste de características técnicas en todos los tamaños */
+.card-body ul.list-unstyled li {
+    color: #fff !important;
+    font-weight: 500;
+    text-shadow: 0 1px 2px #000;
+}
+.card-body h4 {
+    color: #fff !important;
+}
+
+/* --- Side cards en detalle de vehículo --- */
+.detalle-side-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.detalle-side-card {
+    width: 100%;
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 18px !important;
+    border: 1.5px solid #b30000 !important;
+    background: #181818 !important;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+@media (max-width: 991px) {
+    .detalle-side-cards {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.2rem;
+    }
+    .detalle-side-card {
+        max-width: 95vw;
+        min-width: 220px;
+        margin-bottom: 0.5rem;
+    }
+}
+
+.card-body .card-text, .card-body p, .card-body a.btn-success {
+    color: #fff !important;
+}
+
+.card-body a.btn-success {
+    font-weight: bold;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+
+.card-body h4, .card-body h1, .card-body h2, .card-body h3, .card-body h5, .card-body h6 {
+    color: #fff !important;
+}
+
+/* --- Animaciones y efectos para la portada del inicio --- */
+.portada-hero {
+    animation: fadeInPortada 1.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+@keyframes fadeInPortada {
+    from { opacity: 0; transform: translateY(-40px); }
+    to { opacity: 1; transform: none; }
+}
+.portada-img {
+    transition: transform 0.7s cubic-bezier(.25,.8,.25,1), box-shadow 0.5s;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+}
+.portada-img:hover {
+    transform: scale(1.04) rotate(-1deg);
+    box-shadow: 0 16px 48px rgba(230,0,0,0.18);
+}
+.portada-hero h1 {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+.portada-hero h1::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #e60000 60%, #fff 100%);
+    transition: width 0.6s cubic-bezier(.25,.8,.25,1);
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+}
+.portada-hero h1:hover::after {
+    width: 100%;
+}
+
+.animate-title {
+    animation: fadeInTitle 1.2s cubic-bezier(.25,.8,.25,1);
+}
+@keyframes fadeInTitle {
+    from { opacity: 0; transform: translateY(-30px) scale(0.98); }
+    to { opacity: 1; transform: none; }
+}
+.animate-fadein {
+    animation: fadeInSub 1.7s cubic-bezier(.25,.8,.25,1);
+}
+@keyframes fadeInSub {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: none; }
+} 

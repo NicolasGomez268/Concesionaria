@@ -3,67 +3,56 @@
 {% block title %}SDF Automóviles - Inicio{% endblock %}
 
 {% block content %}
-<div class="row mb-4">
-    <div class="col-12">
-        <h1 class="text-center mb-4">Nuestros Vehículos</h1>
-        
-        <!-- Filtros -->
-        <div class="card mb-4">
-            <div class="card-body">
-                <form method="get" class="row g-3">
-                    <div class="col-md-3">
-                        <label for="marca" class="form-label">Marca</label>
-                        <input type="text" class="form-control" id="marca" name="marca">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="modelo" class="form-label">Modelo</label>
-                        <input type="text" class="form-control" id="modelo" name="modelo">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="precio_min" class="form-label">Precio Mínimo</label>
-                        <input type="number" class="form-control" id="precio_min" name="precio_min">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="precio_max" class="form-label">Precio Máximo</label>
-                        <input type="number" class="form-control" id="precio_max" name="precio_max">
-                    </div>
-                    <div class="col-12 text-center">
-                        <button type="submit" class="btn btn-primary">Filtrar</button>
-                    </div>
-                </form>
+<div class="portada-hero text-center d-flex flex-column align-items-center justify-content-center" style="background: #000; min-height: 350px;">
+    <img src="/static/portada.png" alt="Portada SDF Automóviles" class="img-fluid portada-img mb-4" style="max-height: 220px;">
+    <h1 class="display-4 fw-bold text-white mb-2 animate-title">SDF AUTOMÓVILES</h1>
+    <p class="lead text-danger animate-fadein">Tu concesionaria de confianza</p>
+</div>
+
+<div class="container py-5">
+    <h2 class="text-center mb-4 text-white">Autos Destacados</h2>
+    <div class="row g-4 justify-content-center">
+        {% for vehiculo in vehiculos_destacados %}
+        <div class="col-md-4 col-lg-3">
+            <div class="card vehiculo-card h-100">
+                <img src="{{ vehiculo.imagen_destacada.url }}" class="card-img-top vehiculo-img" alt="Imagen de {{ vehiculo.marca }} {{ vehiculo.modelo }}">
+                <div class="card-body">
+                    <h5 class="card-title text-white">{{ vehiculo.marca }} {{ vehiculo.modelo }}</h5>
+                    <p class="card-text text-secondary mb-1">Año: {{ vehiculo.año }}</p>
+                    <p class="card-text text-secondary mb-1">Estado: {{ vehiculo.get_estado_display }}</p>
+                    <p class="card-text text-danger fw-bold mb-2">Precio: ${{ vehiculo.precio|floatformat:2 }}</p>
+                    <a href="{% url 'vehiculo_detail' vehiculo.pk %}" class="btn btn-outline-danger w-100 mb-2">Ver Detalles</a>
+                </div>
             </div>
         </div>
+        {% empty %}
+        <div class="col-12 text-center text-secondary">
+            <p>No hay vehículos destacados.</p>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="text-center mt-4">
+        <a href="{% url 'ver_todos_vehiculos' %}" class="btn btn-danger btn-lg px-5">Ver Todos los Vehículos</a>
+    </div>
+</div>
 
-        <!-- Listado de vehículos -->
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            {% for vehiculo in vehiculos %}
-            <div class="col">
-                <div class="card h-100">
-                    <img src="{{ vehiculo.imagen_destacada.url }}" class="card-img-top" alt="{{ vehiculo.marca }} {{ vehiculo.modelo }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ vehiculo.marca }} {{ vehiculo.modelo }}</h5>
-                        <p class="card-text">
-                            <strong>Año:</strong> {{ vehiculo.año }}<br>
-                            <strong>Estado:</strong> {{ vehiculo.get_estado_display }}<br>
-                            <strong>Precio:</strong> ${{ vehiculo.precio|floatformat:2 }}
-                        </p>
-                        <div class="d-grid gap-2">
-                            <a href="{% url 'vehiculo_detail' vehiculo.pk %}" class="btn btn-primary">Ver Detalles</a>
-                            <a href="https://wa.me/5491112345678?text=Hola, me interesa el {{ vehiculo.marca }} {{ vehiculo.modelo }} {{ vehiculo.año }}" 
-                               class="btn btn-success" target="_blank">
-                                <i class="bi bi-whatsapp"></i> Consultar por WhatsApp
-                            </a>
-                        </div>
-                    </div>
-                </div>
+<div class="container py-5">
+    <h2 class="text-center mb-4 text-white">Contacto y Ubicación</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="bg-dark p-4 rounded-4 border border-danger text-white mb-3">
+                <h5 class="mb-3"><i class="bi bi-geo-alt-fill"></i> Dirección</h5>
+                <p>Av. Dardo Rocha 542, Berazategui, Buenos Aires</p>
+                <h5 class="mb-3"><i class="bi bi-telephone-fill"></i> Teléfono</h5>
+                <p>(011) 1234-5678</p>
+                <h5 class="mb-3"><i class="bi bi-whatsapp"></i> WhatsApp</h5>
+                <p>+54 9 11 1234-5678</p>
+                <h5 class="mb-3"><i class="bi bi-envelope"></i> Email</h5>
+                <p>info@sdfautomoviles.com</p>
             </div>
-            {% empty %}
-            <div class="col-12">
-                <div class="alert alert-info">
-                    No hay vehículos disponibles en este momento.
-                </div>
+            <div class="text-center">
+                <iframe src="https://www.google.com/maps?q=Av.+Dardo+Rocha+542,+Berazategui,+Buenos+Aires&output=embed" width="100%" height="220" style="border:1px solid #e60000; border-radius:12px;" allowfullscreen="" loading="lazy"></iframe>
             </div>
-            {% endfor %}
         </div>
     </div>
 </div>

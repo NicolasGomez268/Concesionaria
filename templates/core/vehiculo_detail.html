@@ -42,24 +42,26 @@
         </div>
     </div>
     <div class="col-md-4">
-        <div class="card mb-4">
-            <div class="card-body">
-                <h4>¿Te interesa este vehículo?</h4>
-                <p>Contactanos por WhatsApp para más información:</p>
-                <a href="https://wa.me/5491112345678?text=Hola, me interesa el {{ vehiculo.marca }} {{ vehiculo.modelo }} {{ vehiculo.año }}" 
-                   class="btn btn-success btn-lg w-100" target="_blank">
-                    <i class="bi bi-whatsapp"></i> Consultar por WhatsApp
-                </a>
+        <div class="detalle-side-cards">
+            <div class="card mb-3 detalle-side-card">
+                <div class="card-body">
+                    <h4>¿Te interesa este vehículo?</h4>
+                    <p>Contactanos por WhatsApp para más información:</p>
+                    <a href="https://wa.me/{{ WHATSAPP_NUMBER }}?text=Hola, me interesa el {{ vehiculo.marca }} {{ vehiculo.modelo }} {{ vehiculo.año }}" 
+                       class="btn btn-success btn-lg w-100" target="_blank">
+                        <i class="bi bi-whatsapp"></i> Consultar por WhatsApp
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <h4>Características Técnicas</h4>
-                <ul class="list-unstyled">
-                    <li><i class="bi bi-check-circle-fill text-success"></i> Año: {{ vehiculo.año }}</li>
-                    <li><i class="bi bi-check-circle-fill text-success"></i> Estado: {{ vehiculo.get_estado_display }}</li>
-                    <li><i class="bi bi-check-circle-fill text-success"></i> Precio: ${{ vehiculo.precio|floatformat:2 }}</li>
-                </ul>
+            <div class="card detalle-side-card">
+                <div class="card-body">
+                    <h4>Características Técnicas</h4>
+                    <ul class="list-unstyled">
+                        <li><i class="bi bi-check-circle-fill text-success"></i> Año: {{ vehiculo.año }}</li>
+                        <li><i class="bi bi-check-circle-fill text-success"></i> Estado: {{ vehiculo.get_estado_display }}</li>
+                        <li><i class="bi bi-check-circle-fill text-success"></i> Precio: ${{ vehiculo.precio|floatformat:2 }}</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
