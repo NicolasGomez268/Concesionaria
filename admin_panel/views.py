@@ -9,7 +9,7 @@ from vehiculos.forms import VehiculoForm
 
 @login_required
 def dashboard(request):
-    vehiculos = Vehiculo.objects.all()
+    vehiculos = Vehiculo.objects.filter(activo=True)
     return render(request, 'admin_panel/dashboard.html', {
         'vehiculos': vehiculos
     })
